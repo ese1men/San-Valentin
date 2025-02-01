@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín - I Love You Viole</title>
+    <style>
+        body {
+            background-color: #ffcccb; /* Fondo rosado claro */
+            color: #ff66b3; /* Color de texto en rosa fuerte */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-top: 20px;
+        }
+
+        #corazones {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: heartAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes heartAnimation {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #ff66b3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        #audio {
+            display: none;
+        }
+
+        .gif-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .gif-container img {
+            width: 300px;
+            height: 300px;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #song-lyrics {
+            font-size: 24px;
+            color: #ff66b3;
+            margin-top: 30px;
+            display: none;
+            animation: fadeInLyrics 1s forwards;
+        }
+
+        @keyframes fadeInLyrics {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>I Love You Viole</h1>
+    <h2>Te lo dice tu San Valentín</h2>
+
+    <div id="corazones">
+        <span class="heart" style="animation-delay: 0s;">❤</span>
+        <span class="heart" style="animation-delay: 1s;">❤</span>
+        <span class="heart" style="animation-delay: 2s;">❤</span>
+        <span class="heart" style="animation-delay: 3s;">❤</span>
+        <span class="heart" style="animation-delay: 4s;">❤</span>
+        <span class="heart" style="animation-delay: 5s;">❤</span>
+        <span class="heart" style="animation-delay: 6s;">❤</span>
+        <span class="heart" style="animation-delay: 7s;">❤</span>
+        <span class="heart" style="animation-delay: 8s;">❤</span>
+    </div>
+
+    <div class="button-container">
+        <button onclick="playYes()">Sí, me encanta 💖</button>
+        <button onclick="playNo()">No, lo siento 💔</button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="audio" autoplay loop>
+        <source src="as_it_was_excerpt.mp3" type="audio/mp3">
+        Tu navegador no soporta este formato de audio.
+    </audio>
+
+    <!-- GIFs -->
+    <div class="gif-container" id="gif-yes">
+        <img src="happy_love.gif" alt="GIF Feliz">
+    </div>
+
+    <div class="gif-container" id="gif-no">
+        <img src="sad_love.gif" alt="GIF Triste">
+    </div>
+
+    <div class="gif-container" id="gif-wait">
+        <img src="anxious_love.gif" alt="GIF Ansioso">
+    </div>
+
+    <!-- Letra de la canción -->
+    <div id="song-lyrics">
+        <p>In this world, it's just us...</p>
+        <p>And everything will be alright...</p>
+    </div>
+
+    <script>
+        function playYes() {
+            // Reproducir la música alegre
+            document.getElementById("audio").src = "happy_song.mp3"; // Asegúrate de tener la canción alegre en el archivo happy_song.mp3
+
+            // Mostrar GIF alegre y ocultar otros
+            document.getElementById("gif-yes").style.display = "block";
+            document.getElementById("gif-no").style.display = "none";
+            document.getElementById("gif-wait").style.display = "none";
+
+            // Desaparecer el botón de "No"
+            document.querySelectorAll('button')[1].style.display = "none";
+
+            // Cambiar el fondo de la página
+            document.body.style.backgroundColor = "#ff99cc";
+
+            // Mostrar la letra de la canción
+            document.getElementById("song-lyrics").style.display = "block";
+        }
+
+        function playNo() {
+            // Reproducir música triste
+            document.getElementById("audio").src = "sad_song.mp3"; // Asegúrate de tener la canción triste en el archivo sad_song.mp3
+
+            // Mostrar GIF triste y ocultar otros
+            document.getElementById("gif-no").style.display = "block";
+            document.getElementById("gif-yes").style.display = "none";
+            document.getElementById("gif-wait").style.display = "none";
+
+            // Desaparecer el botón de "Sí"
+            document.querySelectorAll('button')[0].style.display = "none";
+
+            // Cambiar el fondo de la página
+            document.body.style.backgroundColor = "#ff6666"; // Fondo triste
+        }
+
+        function playWaiting() {
+            // Mostrar el GIF ansioso cuando se está esperando
+            document.getElementById("gif-wait").style.display = "block";
+        }
+    </script>
+</body>
+</html>
